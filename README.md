@@ -3,7 +3,7 @@
 **Universidad Icesi**  
 **Curso:** Sistemas Operativos  
 **Estudiantes:** steven montealegre, miguel isaza, edisson guerrero  
-**Codigos:** A00014976, A00054628, A00328068 
+**Codigos:** A00014976, A00054628, A00328068  
 **Correos:** james.montealegre@correo.icesi.edu.com, miguel11andres@hotmail.com,edixon_guerrero96@hotmail.com 
 
 
