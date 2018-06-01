@@ -1,10 +1,10 @@
-# so-project
+# so final project
 
 **Universidad Icesi**  
 **Curso:** Sistemas Operativos  
-**Estudiantes:** steven montealegre, miguel isaza, edisson guerrero
-**Codigos: ** A00014976, A00054628, A00328068   
-**Correo:** james.montealegre@correo.icesi.edu.com, miguel11andres@hotmail.com,edixon_guerrero96@hotmail.com 
+**Estudiantes:** steven montealegre, miguel isaza, edisson guerrero  
+**Codigos:** A00014976, A00054628, A00328068 
+**Correos:** james.montealegre@correo.icesi.edu.com, miguel11andres@hotmail.com,edixon_guerrero96@hotmail.com 
 
 
 ### Instalacion LXC/LXD:
@@ -114,14 +114,10 @@ lxc launch ubuntu:x webserver2
 
 ![](imagenes/10.jpg) 
 
-El cual si es la primera vez descarga la imagen de ubuntu xenial (ubuntu:x)
-
 Luego debemos ingresar a cada contenedor para configurar el servidor web:
 ```
 lxc exec webserver1 -- sudo --login --user webserver1
 ```
-![](imagenes/11.jpg)
-
 Instalamos Nginx para la configuración del servidor web:
 ```
 sudo apt-get install nginx
@@ -129,8 +125,6 @@ sudo apt-get install nginx
 Se ingresa a la pagina web por default del sevidor, y se modifica el archivo, para que retorne una pagina html con los nombres de cada contenedor:
 
 ![](imagenes/12.jpg) 
-
-![](imagenes/13.jpg) 
 
  Reiniciamos el servicio nginx y salimos del contenedor, usando el comando: 
 
@@ -140,6 +134,8 @@ logout
 ```
 **Repetimos el mismo proceso para el Webserver 2**  
 Cambiamos el titulo en la pagina web por: Welcome to Webserver2. Para poder diferenciarlos.  
+
+![](imagenes/13.jpg) 
 
 ### Creación Balanceador de Carga
 
@@ -194,8 +190,8 @@ lxc config set webserver# limits.cpu.allowance 50%
 lxc config set webserver# limits.memory 64MB
 lxc config set webserver# limits.memory 128MB
 ```
-Para realizar las pruebas se usan ab y siege:
--Se instalan:
+Para realizar las pruebas se usa siege:
+-Se instala:
 ```
 sudo apt-get install apache2-utils
 sudo apt-get install siege
@@ -247,7 +243,7 @@ Para permitir las peticiones al balanceador de carga desde el SO anfitrion se de
 PORT=80 PUBLIC_IP=172.30.179.119 CONTAINER_IP=10.161.8.183 \
 sudo iptables -t nat -I PREROUTING -i enp0s8 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "forward to the Nginx container"
 ```
-Por medio del navegador Chrome se hacen peticiones, a la IP del servidor (192.168.0.16)
+Por medio del navegador Chrome se hacen peticiones, a la IP del servidor (172.30.179.119)
 ![](imagenes/19.jpg)
 ![](imagenes/20.jpg)
 
