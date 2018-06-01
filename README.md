@@ -2,26 +2,26 @@
 
 **Universidad Icesi**  
 **Curso:** Sistemas Operativos  
-**Estudiantes:** steven montealegre, miguel isaza, edisson guerrero  
+**Estudiantes:** Steven Montealegre, Miguel Isaza, Edisson Guerrero  
 **Codigos:** A00014976, A00054628, A00328068  
 **Correos:** james.montealegre@correo.icesi.edu.com, miguel11andres@hotmail.com,edixon_guerrero96@hotmail.com 
 
 
 ### Instalacion LXC/LXD:
 
-1. Se intala Ubuntu Xenial, durante la instalacion se crea un usuario operativos.luego instalamos sudo para poder tener permisos en todos los usuarios y agregamos al archivo sudoers el usuario operativos. LXC ya viene instalado en esta version de ubuntu .
+1. Se intala Ubuntu Xenial, durante la instalación se crea el usuario operativos. Luego instalamos sudo para poder obtener permisos para todos los usuarios y agregamos al archivo sudoers el usuario operativos. LXC ya viene instalado para esta versión de ubuntu (ubuntu server).
 
 ```
 usermod -aG sudo operativos 
 ```   
 
 
-2. agregamos al usuario operativos al grupo lxd,  Para poder acceder al administrador de contendores con el comando:
+2. Agregamos el usuario operativos al grupo lxd,  Para poder acceder al administrador de contendores con el comando:
 
 ```
 sudo usermod --append --groups lxd operativos
 ```
-3. que es un storage pool? ventajas de ZFS
+3. ¿Qué es un storage pool? ventajas de ZFS
 el **storage pool** es un conjunto de discos en el que el servidor de Data Protection Manager (DPM) almacena réplicas, instantáneas y registros de transferencia. Antes de que pueda comenzar a proteger los datos, debe agregar al menos un disco al grupo de almacenamiento. Los discos agregados al grupo de almacenamiento deben estar vacíos. Para prepararse para la protección de datos, DPM reformatea los discos y borra cualquier dato en ellos.
 
 **ZFS** es un sistema de ficheros,es una manera de gestionar el contenido que se almacena en el disco en un formato determinado.
@@ -41,7 +41,7 @@ este sistema tiene muchas ventajas:
 ```
 .ZFS ofrece compresión transparente al usuario, lo que maximiza el espacio disponible en disco y, muchas veces, la velocidad de lectura
 ```
- 4. valores por defecto de la configuración de un puente LXD
+ 4. Valores por defecto de la configuración de un puente LXD
 
 - instalamos la herramienta de línea de comandos para administrar sistemas de archivos zfsutils**
 ```
@@ -49,11 +49,11 @@ sudo apt-get update
 sudo apt-get install zfsutils-linux
 ```
 
-- Ahora se configura el proceso de inicializacion de los contenedores: 
+- Ahora se configura el proceso de inicialización de los contenedores: 
 ```
 sudo lxd init
 ```
- se crea un storage pool, lo cual nos permite agrupar la capacidad de varios discos.
+ Se crea un storage pool, lo cual nos permite agrupar la capacidad de varios discos.
 
 ![](imagenes/1.jpg)  
 
@@ -78,22 +78,22 @@ Esto abre una pantalla para realizar el proceso:
 
 ![](imagenes/4.jpg) 
 
-- Aceptamos la mascara de red  
+- Aceptamos la máscara de red  
 
 ![](imagenes/5.jpg) 
 
-- Aceptamos la primera IP y la ultima IP del servicio DHCP, que asigna un ip a cada contenedor que le pida una IP de la subred al
+- Aceptamos la primera IP y la última IP del servicio DHCP, que asigna un ip a cada contenedor que le pida una IP de la subred al
 servicio.  
 
 ![](imagenes/6.jpg) 
 
 ![](imagenes/7.jpg) 
 
-- aceptamos el numero maximo de clientes DHCP
+- aceptamos el número máximo de clientes DHCP
 
 ![](imagenes/8.jpg) 
 
-- Aceptamos que permita NAT para el trafico IP, con el objetivo que haya una IP que nos permita navegar a internet.
+- Aceptamos que permita NAT para el tráfico IP, con el objetivo que haya una IP que nos permita navegar a internet.
 
 ![](imagenes/9.jpg) 
 
@@ -114,7 +114,7 @@ lxc exec webserver1 -- sudo --login --user webserver1
 ```
 sudo apt-get install nginx
 ```
-- Se ingresa a la pagina web por default del sevidor, y se modifica el archivo, para que retorne una pagina html con los nombres de cada contenedor:
+- Se ingresa a la página web por default del sevidor, y se modifica el archivo, para que retorne una página html con los nombres de cada contenedor:
 
 ![](imagenes/12.jpg) 
 
@@ -125,7 +125,7 @@ sudo service nginx restart
 logout
 ```
 **Repetimos el mismo proceso para el Webserver 2**  
-Cambiamos el titulo en la pagina web por: Welcome to Webserver2. Para poder diferenciarlos.  
+Cambiamos el titulo en la página web por: Welcome to Webserver2. Para poder diferenciarlos.  
 
 ![](imagenes/13.jpg) 
 
@@ -139,7 +139,7 @@ lxc launch ubuntu:x loadBalancer
 ```
 lxc exec loadBalancer -- sudo --login --user ubuntu
 ```
-- Instalamos Nginx, el cual tambien se puede confirgurar como balanceador de carga y actuar como proxy para los servidores Web.
+- Instalamos Nginx, el cual también se puede confirgurar como balanceador de carga y actuar como proxy para los servidores Web.
 ```
 sudo apt-get install nginx
 ```
@@ -148,7 +148,7 @@ sudo apt-get install nginx
 
 ![](imagenes/17.jpg)
 
-Lo que se configura es un bloque de servidores a los cuales se les pasara las peticiones.
+Lo que se configura es un bloque de servidores a los cuales se les pasará las peticiones.
 Para Ubuntu, se debe eliminar la pagina por default, para que cuando se hagan solicitudes al balanceador no retorne la pag html, y
 ademas se reinicia el servicio nginx:
 
